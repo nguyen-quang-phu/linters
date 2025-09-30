@@ -1,0 +1,90 @@
+import eslintReact from '@eslint-react/eslint-plugin';
+import js from '@eslint/js';
+import xoSpaceBrowser from 'eslint-config-xo/space/browser';
+import importPlugin from 'eslint-plugin-import';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import perfectionist from 'eslint-plugin-perfectionist';
+import pluginReact from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactPerfPlugin from 'eslint-plugin-react-perf';
+import preferFunctionComponent from 'eslint-plugin-react-prefer-function-component/config';
+import pluginSecurity from 'eslint-plugin-security';
+import sonarjs from 'eslint-plugin-sonarjs';
+import eslintPluginUnicorn from 'eslint-plugin-unicorn';
+import { defineConfig } from 'eslint/config';
+import globals from 'globals';
+export default defineConfig([
+  {
+    extends: ['js/recommended'],
+    files: ['**/*.{js,mjs,cjs,jsx}'],
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true, // Enable JSX syntax support
+        },
+      },
+    },
+    plugins: { js },
+  },
+  importPlugin.flatConfigs.recommended,
+  xoSpaceBrowser,
+  pluginReact.configs.flat.recommended,
+  eslintReact.configs['disable-conflict-eslint-plugin-react'],
+  eslintReact.configs.recommended,
+  eslintPluginUnicorn.configs.recommended,
+  jsxA11y.flatConfigs.recommended,
+  reactPerfPlugin.configs.flat.recommended,
+  reactHooks.configs['recommended-latest'],
+  sonarjs.configs.recommended,
+  pluginSecurity.configs.recommended,
+  // PreferFunctionComponent.configs.recommended,
+  perfectionist.configs['recommended-alphabetical'],
+  {
+    settings: {
+      'import/resolver': {
+        alias: [
+          ['apis', './src/apis'],
+          ['assets', './src/assets'],
+          ['components', './src/components'],
+          ['wrappers', './src/wrappers'],
+          ['constants', './src/constants'],
+          ['hooks', './src/hooks'],
+          ['scss', './src/scss'],
+          ['services', './src/services'],
+          ['utils', './src/utils'],
+          ['features', './src/features'],
+          ['slices', './src/slices'],
+          ['frameworks', './src/frameworks'],
+          ['HOC', './src/HOC'],
+          ['tokens', './src/tokens'],
+          ['helpers', './src/helpers'],
+          ['libs', './src/libs'],
+          ['i18n', './src/i18n'],
+          ['store', './src/store'],
+          ['slices-machine', './src/slices-machine'],
+          ['context', './src/context'],
+          ['@lumin-tokens/static', './node_modules/@lumin-ui/dist/design-tokens/growth-templates/js'],
+          ['@lumin-tokens/kiwi', './node_modules/@lumin-ui/dist/design-tokens/kiwi/js'],
+          ['@lumin-tokens/kiwi/*', './node_modules/@lumin-ui/dist/design-tokens/kiwi/js/*'],
+          ['@lumin-tokens', './node_modules/@lumin-ui/dist/design-tokens/koala/js'],
+          ['@lumin-tokens/*', './node_modules/@lumin-ui/dist/design-tokens/koala/js/*'],
+          ['@lumin-ui/kiwi', './node_modules/@lumin-ui/dist/kiwi-ui'],
+        ],
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
+      },
+    },
+  },
+  {
+    rules: {
+      '@stylistic/object-curly-spacing': [
+        'error',
+        'always',
+      ],
+      'no-console': 'error',
+      'no-debugger': 'error',
+    },
+  },
+]);

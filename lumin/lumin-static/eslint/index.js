@@ -1,0 +1,9 @@
+const hello = () => {
+  const a = 1;
+
+  if (a === 1) {
+    return true;
+  }
+
+  return false;
+};
