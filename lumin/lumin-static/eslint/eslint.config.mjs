@@ -3,6 +3,7 @@ import js from '@eslint/js';
 import xoSpaceBrowser from 'eslint-config-xo/space/browser';
 import importPlugin from 'eslint-plugin-import';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
+import oxlint from 'eslint-plugin-oxlint';
 import perfectionist from 'eslint-plugin-perfectionist';
 import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -40,6 +41,7 @@ export default defineConfig([
   pluginSecurity.configs.recommended,
   // PreferFunctionComponent.configs.recommended,
   perfectionist.configs['recommended-alphabetical'],
+  oxlint.configs['flat/recommended'],
   {
     settings: {
       'import/resolver': {
