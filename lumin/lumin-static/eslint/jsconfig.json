@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "checkJs": true,
+    "module": "esnext",
+    "target": "es2015",
+    // "jsx": "react-jsx",
+    "strict": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": true,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "pretty": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@lumin-tokens/static": ["../node_modules/@lumin-ui/dist/design-tokens/growth-templates/js"],
+      "@lumin-tokens/kiwi": ["../node_modules/@lumin-ui/dist/design-tokens/kiwi/js"],
+      "@lumin-tokens/kiwi/*": ["../node_modules/@lumin-ui/dist/design-tokens/kiwi/js/*"],
+      "@lumin-tokens": ["../node_modules/@lumin-ui/dist/design-tokens/koala/js"],
+      "@lumin-tokens/*": ["../node_modules/@lumin-ui/dist/design-tokens/koala/js/*"],
+      "@lumin-ui/kiwi": ["../node_modules/@lumin-ui/dist/kiwi-ui"],
+    },
+    "typeRoots": ["./node_modules/@types", "./declarations.d.ts"]
+  }
+}
