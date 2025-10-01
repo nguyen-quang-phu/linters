@@ -34,7 +34,7 @@ export default defineConfig([
   eslintReact.configs['disable-conflict-eslint-plugin-react'],
   eslintReact.configs.recommended,
   eslintPluginUnicorn.configs.recommended,
-  jsxA11y.flatConfigs.recommended,
+  jsxA11y.flatConfigs.strict,
   reactPerfPlugin.configs.flat.recommended,
   reactHooks.configs['recommended-latest'],
   sonarjs.configs.recommended,
@@ -87,6 +87,15 @@ export default defineConfig([
       ],
       'no-console': 'error',
       'no-debugger': 'error',
+      'unicorn/filename-case': [
+        'error',
+        {
+          cases: {
+            camelCase: true,
+            pascalCase: true,
+          },
+        },
+      ],
     },
   },
 ]);
