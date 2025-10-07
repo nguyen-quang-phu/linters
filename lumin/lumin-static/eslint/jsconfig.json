@@ -33,6 +33,10 @@
       "@lumin-tokens/*": ["../node_modules/@lumin-ui/dist/design-tokens/koala/js/*"],
       "@lumin-ui/kiwi": ["../node_modules/@lumin-ui/dist/kiwi-ui"],
     },
-    "typeRoots": ["./node_modules/@types", "./declarations.d.ts"]
+    "typeRoots": [
+      "./node_modules/@types",
+      "./declarations.d.ts",
+      "./types"
+    ]
   }
 }

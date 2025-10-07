@@ -14,6 +14,7 @@ import sonarjs from 'eslint-plugin-sonarjs';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
+import cssModules from 'eslint-plugin-css-modules';
 export default defineConfig([
   {
     extends: ['js/recommended'],
@@ -39,8 +40,17 @@ export default defineConfig([
   reactHooks.configs['recommended-latest'],
   sonarjs.configs.recommended,
   pluginSecurity.configs.recommended,
+  {
+    plugins: {
+      'css-modules': cssModules,
+    },
+    rules: {
+      'css-modules/no-unused-class': 'error',
+      'css-modules/no-undef-class': 'error',
+    },
+  },
   // PreferFunctionComponent.configs.recommended,
-  perfectionist.configs['recommended-alphabetical'],
+  // perfectionist.configs['recommended-alphabetical'],
   oxlint.configs['flat/recommended'],
   {
     settings: {
@@ -87,6 +97,7 @@ export default defineConfig([
       ],
       'no-console': 'error',
       'no-debugger': 'error',
+      'perfectionist/sort-imports': 'off',
       'unicorn/filename-case': [
         'error',
         {
