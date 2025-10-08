@@ -15,6 +15,9 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import cssModules from 'eslint-plugin-css-modules';
+
+import customRules from './eslint-rules/index.js';
+
 export default defineConfig([
   {
     extends: ['js/recommended'],
@@ -90,11 +93,22 @@ export default defineConfig([
     },
   },
   {
+    files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+    plugins: {
+      custom: customRules,
+    },
+    rules: {
+      'custom/no-nested-translation-keys': ['error', { maxDepth: 1 }],
+    },
+  },
+  {
     rules: {
       '@stylistic/object-curly-spacing': [
         'error',
         'always',
       ],
+      '@stylistic/function-paren-newline': ['error', 'consistent'],
+      '@stylistic/jsx-curly-spacing': ['error', { when: 'never', children: true }],
       'no-console': 'error',
       'no-debugger': 'error',
       'perfectionist/sort-imports': 'off',
