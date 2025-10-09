@@ -121,6 +121,7 @@ export default defineConfig([
           },
         },
       ],
+      'unicorn/prefer-node-protocol': 'off',
     },
   },
 ]);
