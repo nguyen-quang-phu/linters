@@ -109,6 +109,10 @@ export default defineConfig([
       ],
       '@stylistic/function-paren-newline': ['error', 'consistent'],
       '@stylistic/jsx-curly-spacing': ['error', { when: 'never', children: true }],
+      '@stylistic/arrow-parens': ['error', 'always'],
+      '@stylistic/jsx-closing-bracket-location': ['error', 'tag-aligned'],
+      '@stylistic/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
+      '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       'no-console': 'error',
       'no-debugger': 'error',
       'perfectionist/sort-imports': 'off',
@@ -118,6 +122,7 @@ export default defineConfig([
           cases: {
             camelCase: true,
             pascalCase: true,
+            kebabCase: true,
           },
         },
       ],
