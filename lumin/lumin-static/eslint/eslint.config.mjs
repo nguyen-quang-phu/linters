@@ -25,6 +25,8 @@ export default defineConfig([
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
         ecmaFeatures: {
           jsx: true, // Enable JSX syntax support
         },
@@ -32,7 +34,6 @@ export default defineConfig([
     },
     plugins: { js },
   },
-  importPlugin.flatConfigs.recommended,
   xoSpaceBrowser,
   pluginReact.configs.flat.recommended,
   eslintReact.configs['disable-conflict-eslint-plugin-react'],
@@ -42,6 +43,7 @@ export default defineConfig([
   reactPerfPlugin.configs.flat.recommended,
   reactHooks.configs['recommended-latest'],
   sonarjs.configs.recommended,
+  importPlugin.flatConfigs.recommended,
   pluginSecurity.configs.recommended,
   {
     plugins: {
@@ -127,6 +129,15 @@ export default defineConfig([
         },
       ],
       'unicorn/prefer-node-protocol': 'off',
+      'capitalized-comments': ['off'],
+    },
+  },
+  {
+    files: ['**/*.test.{js,jsx,ts,tsx}', '**/__tests__/**/*.{js,jsx,ts,tsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
     },
   },
 ]);
