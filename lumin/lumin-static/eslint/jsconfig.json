@@ -32,6 +32,8 @@
       "@lumin-tokens": ["../node_modules/@lumin-ui/dist/design-tokens/koala/js"],
       "@lumin-tokens/*": ["../node_modules/@lumin-ui/dist/design-tokens/koala/js/*"],
       "@lumin-ui/kiwi": ["../node_modules/@lumin-ui/dist/kiwi-ui"],
+      "@lumin-tokens/kauri": ["../node_modules/@lumin-ui/dist/design-tokens/kauri/js"],
+      "@lumin-tokens/kauri/*": ["../node_modules/@lumin-ui/dist/design-tokens/kauri/js/*"],
     },
     "typeRoots": [
       "./node_modules/@types",

@@ -15,6 +15,7 @@ import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import { defineConfig } from 'eslint/config';
 import globals from 'globals';
 import cssModules from 'eslint-plugin-css-modules';
+import query from '@tanstack/eslint-plugin-query';
 
 import customRules from './eslint-rules/index.js';
 
@@ -57,6 +58,15 @@ export default defineConfig([
   // PreferFunctionComponent.configs.recommended,
   // perfectionist.configs['recommended-alphabetical'],
   oxlint.configs['flat/recommended'],
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      '@tanstack/query': query,
+    },
+    rules: {
+      ...query.configs.recommended.rules,
+    },
+  },
   {
     settings: {
       'import/resolver': {
