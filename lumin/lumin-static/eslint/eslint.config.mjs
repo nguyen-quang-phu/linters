@@ -114,6 +114,19 @@ export default defineConfig([
     },
   },
   {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+    rules: {
+      // React 17+ automatic JSX runtime
+      'react/react-in-jsx-scope': 'off',
+      'react/jsx-uses-react': 'off',
+    },
+  },
+  {
     rules: {
       '@stylistic/object-curly-spacing': [
         'error',

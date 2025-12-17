@@ -1,29 +1,20 @@
 {
   "compilerOptions": {
-    "jsx": "react",
+    /* Core */
     "checkJs": true,
+    "allowJs": true,
+    "noEmit": true,
+
+    /* Modern JS / top-level await */
     "module": "esnext",
-    "target": "es2015",
-    // "jsx": "react-jsx",
-    "strict": true,
-    "lib": [
-      "es6",
-      "dom"
-    ],
-    "esModuleInterop": true,
+    "target": "es2020",
+    "lib": ["es2020", "dom", "dom.iterable"],
+
+    /* React */
+    "jsx": "react-jsx",
+
+    /* Module resolution */
     "moduleResolution": "node",
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": true,
-    "alwaysStrict": true,
-    "noFallthroughCasesInSwitch": false,
-    "noImplicitReturns": true,
-    "noImplicitAny": false,
-    "noUnusedLocals": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": false,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "pretty": true,
     "baseUrl": "./src",
     "paths": {
       "@lumin-tokens/static": ["../node_modules/@lumin-ui/dist/design-tokens/growth-templates/js"],
@@ -33,12 +24,27 @@
       "@lumin-tokens/*": ["../node_modules/@lumin-ui/dist/design-tokens/koala/js/*"],
       "@lumin-ui/kiwi": ["../node_modules/@lumin-ui/dist/kiwi-ui"],
       "@lumin-tokens/kauri": ["../node_modules/@lumin-ui/dist/design-tokens/kauri/js"],
-      "@lumin-tokens/kauri/*": ["../node_modules/@lumin-ui/dist/design-tokens/kauri/js/*"],
+      "@lumin-tokens/kauri/*": ["../node_modules/@lumin-ui/dist/design-tokens/kauri/js/*"]
     },
-    "typeRoots": [
-      "./node_modules/@types",
-      // "./declarations.d.ts",
-      // "./types"
-    ]
-  }
+
+    /* Interop */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    /* Strictness (JS-friendly) */
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "useUnknownInCatchVariables": false,
+
+    /* Quality */
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Types */
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "exclude": ["node_modules", "dist", "build"]
 }

@@ -153,8 +153,10 @@ add-stylelint:
 cloudflared:
   cloudflared tunnel --url localhost:8000
 
-link-commit-msg:
+link:
  ln -s ~/.config/git/hooks/commit-msg .husky/commit-msg
+ ln -s ~/Code/keynold/linters/lumin/lumin-static/eslint/jsconfig.json
+ ln -sf /Users/dev/dotfiles/keynold-scripts keynold_scripts
 
 [positional-arguments]
 generate-component path:
@@ -166,14 +168,5 @@ test +args:
 cache:
   rm -rf .cache
 
-link-jsconfig:
-  ln -s ~/Code/keynold/linters/lumin/lumin-static/eslint/jsconfig.json
-
-create-pr-dev:
-  node keynold_scripts/create-pr.js --target develop
-
-create-pr-master:
-  node keynold_scripts/create-pr.js --target master
-
-sync-script:
-  ln -sf /Users/dev/dotfiles/keynold-scripts keynold_scripts
+create-pr:
+  node keynold_scripts/create-pr.js --target $(git town config get-parent)
