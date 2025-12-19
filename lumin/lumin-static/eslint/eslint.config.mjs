@@ -152,6 +152,19 @@ export default defineConfig([
         },
       ],
       'unicorn/prefer-node-protocol': 'off',
+      "unicorn/prevent-abbreviations": [
+        "error",
+        {
+          "replacements": {
+            "e": {
+              "event": false
+              },
+            "res": false,
+            "ref": false,
+            "src": false,
+          }
+        }
+      ],
       'capitalized-comments': ['off'],
     },
   },
