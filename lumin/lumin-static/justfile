@@ -170,3 +170,7 @@ cache:
 
 create-pr:
   node keynold_scripts/create-pr.js --target $(git town config get-parent)
+
+add-extra:
+  just _pnpm add @types/react @types/lodash @types/loadable__component @types/prop-types
+
