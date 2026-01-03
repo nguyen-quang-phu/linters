@@ -7,8 +7,8 @@
 
     /* Modern JS / top-level await */
     "module": "esnext",
-    "target": "es2020",
-    "lib": ["es2020", "dom", "dom.iterable"],
+    "target": "esnext",
+    "lib": ["esnext", "dom", "dom.iterable"],
 
     /* React */
     "jsx": "react-jsx",

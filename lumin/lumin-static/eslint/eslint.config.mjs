@@ -8,11 +8,15 @@ import perfectionist from 'eslint-plugin-perfectionist';
 import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactPerfPlugin from 'eslint-plugin-react-perf';
+import reactHooksExtra from "eslint-plugin-react-hooks-extra";
+import reactDebug from "eslint-plugin-react-debug";
 import preferFunctionComponent from 'eslint-plugin-react-prefer-function-component/config';
 import pluginSecurity from 'eslint-plugin-security';
 import sonarjs from 'eslint-plugin-sonarjs';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import { defineConfig } from 'eslint/config';
+import clsx from "eslint-plugin-clsx";
+import reactWebApi from "eslint-plugin-react-web-api";
 import globals from 'globals';
 import cssModules from 'eslint-plugin-css-modules';
 import query from '@tanstack/eslint-plugin-query';
@@ -46,6 +50,10 @@ export default defineConfig([
   sonarjs.configs.recommended,
   importPlugin.flatConfigs.recommended,
   pluginSecurity.configs.recommended,
+  clsx.configs.flat.recommended,
+  reactHooksExtra.configs.recommended,
+  // reactDebug.configs.all,
+  reactWebApi.configs.recommended,
   {
     plugins: {
       'css-modules': cssModules,
@@ -124,6 +132,15 @@ export default defineConfig([
       // React 17+ automatic JSX runtime
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
+      'max-lines-per-function': [
+        'error',
+        {
+          max: 200,
+          skipBlankLines: true,
+          skipComments: true,
+          IIFEs: true,
+        },
+      ],
     },
   },
   {
@@ -163,6 +180,10 @@ export default defineConfig([
             ref: false,
             src: false,
             prev: false,
+            prop: false,
+            props: false,
+            param: false,
+            params: false,
           },
         },
       ],

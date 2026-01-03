@@ -110,7 +110,7 @@ _set-env env:
 
 _start env:
   @just update-sm-{{env}}
-  @just install
+  # @just install
   doppler run --config=dev_{{env}} -- just s
 
 killport:
@@ -162,6 +162,9 @@ link:
 generate-component path:
   copier copy {{react_component_template_path}} $1
 
+test_all:
+  just _pnpm test
+
 test +args:
   just _pnpm test {{args}}
 
@@ -172,5 +175,5 @@ create-pr:
   node keynold_scripts/create-pr.js --target $(git town config get-parent)
 
 add-extra:
-  just _pnpm add @types/react @types/lodash @types/loadable__component @types/prop-types
+  just _pnpm add @types/react @types/lodash @types/loadable__component @types/prop-types @types/react-helmet
 
