@@ -45,6 +45,7 @@
 
     /* Types */
     "typeRoots": ["./node_modules/@types"],
+    "types": ["jest", "@testing-library/jest-dom"],
 
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

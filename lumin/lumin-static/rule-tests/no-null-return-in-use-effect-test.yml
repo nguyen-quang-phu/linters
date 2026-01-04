@@ -1,0 +1,76 @@
+id: no-null-return-in-use-effect
+valid:
+  # Valid: return undefined in useEffect
+  - |
+    useEffect(() => {
+      // some code
+      return undefined;
+    }, []);
+  
+  # Valid: return null outside useEffect
+  - |
+    const MyComponent = () => {
+      if (!data) {
+        return null;
+      }
+      return <div>Content</div>;
+    };
+  
+  # Valid: return cleanup function in useEffect
+  - |
+    useEffect(() => {
+      const timer = setTimeout(() => {}, 1000);
+      return () => clearTimeout(timer);
+    }, []);
+  
+  # Valid: no return statement in useEffect
+  - |
+    useEffect(() => {
+      console.log('effect');
+    }, []);
+  
+  # Valid: return null in regular function
+  - |
+    const handleClick = () => {
+      return null;
+    };
+  
+  # Valid: return null in useCallback
+  - |
+    const callback = useCallback(() => {
+      return null;
+    }, []);
+
+invalid:
+  # Invalid: return null in useEffect
+  - |
+    useEffect(() => {
+      // some code
+      return null;
+    }, []);
+  
+  # Invalid: return null in useEffect with dependencies
+  - |
+    useEffect(() => {
+      if (condition) {
+        return null;
+      }
+    }, [dependency]);
+  
+  # Invalid: return null in useEffect with cleanup
+  - |
+    useEffect(() => {
+      const timer = setTimeout(() => {}, 1000);
+      if (condition) {
+        return null;
+      }
+      return () => clearTimeout(timer);
+    }, []);
+  
+  # Invalid: return null in nested useEffect
+  - |
+    useEffect(() => {
+      useEffect(() => {
+        return null;
+      }, []);
+    }, []);

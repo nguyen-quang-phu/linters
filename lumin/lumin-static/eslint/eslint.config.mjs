@@ -141,6 +141,9 @@ export default defineConfig([
           IIFEs: true,
         },
       ],
+      'no-shadow': [
+        'error',
+      ],
     },
   },
   {

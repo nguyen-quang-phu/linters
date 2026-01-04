@@ -158,6 +158,12 @@ link:
  ln -s ~/Code/keynold/linters/lumin/lumin-static/eslint/jsconfig.json
  ln -sf /Users/dev/dotfiles/keynold-scripts keynold_scripts
 
+link-sg:
+ ln -sf ~/Code/keynold/linters/lumin/lumin-static/rules
+ ln -sf ~/Code/keynold/linters/lumin/lumin-static/rule-tests
+ ln -sf ~/Code/keynold/linters/lumin/lumin-static/utils utils
+ ln -sf ~/Code/keynold/linters/lumin/lumin-static/sgconfig.yml
+
 [positional-arguments]
 generate-component path:
   copier copy {{react_component_template_path}} $1
