@@ -11,11 +11,14 @@
   "description": "",
   "devDependencies": {
     "postcss-scss": "^4.0.9",
-    "stylelint": "^16.24.0",
+    "stylelint": "^16.26.1",
     "stylelint-config-css-modules": "^4.5.1",
+    "stylelint-config-recess-order": "^7.4.0",
+    "stylelint-config-recommended": "^17.0.0",
     "stylelint-config-recommended-scss": "^16.0.2",
     "stylelint-config-standard": "^39.0.0",
     "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-order": "^7.0.1",
     "stylelint-scss": "^6.12.1"
   }
 }
