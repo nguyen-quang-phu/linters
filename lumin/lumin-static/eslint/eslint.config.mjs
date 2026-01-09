@@ -46,7 +46,7 @@ export default defineConfig([
   eslintPluginUnicorn.configs.recommended,
   jsxA11y.flatConfigs.strict,
   reactPerfPlugin.configs.flat.recommended,
-  reactHooks.configs['recommended-latest'],
+  reactHooks.configs.flat['recommended-latest'],
   sonarjs.configs.recommended,
   importPlugin.flatConfigs.recommended,
   pluginSecurity.configs.recommended,
