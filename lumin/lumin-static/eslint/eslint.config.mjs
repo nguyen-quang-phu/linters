@@ -8,18 +8,19 @@ import perfectionist from 'eslint-plugin-perfectionist';
 import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactPerfPlugin from 'eslint-plugin-react-perf';
-import reactHooksExtra from "eslint-plugin-react-hooks-extra";
-import reactDebug from "eslint-plugin-react-debug";
+import reactHooksExtra from 'eslint-plugin-react-hooks-extra';
+import reactDebug from 'eslint-plugin-react-debug';
 import preferFunctionComponent from 'eslint-plugin-react-prefer-function-component/config';
 import pluginSecurity from 'eslint-plugin-security';
 import sonarjs from 'eslint-plugin-sonarjs';
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import { defineConfig } from 'eslint/config';
-import clsx from "eslint-plugin-clsx";
-import reactWebApi from "eslint-plugin-react-web-api";
+import clsx from 'eslint-plugin-clsx';
+import reactWebApi from 'eslint-plugin-react-web-api';
 import globals from 'globals';
 import cssModules from 'eslint-plugin-css-modules';
 import query from '@tanstack/eslint-plugin-query';
+import graphqlPlugin from '@graphql-eslint/eslint-plugin';
 
 import customRules from './eslint-rules/index.js';
 
@@ -75,6 +76,74 @@ export default defineConfig([
       ...query.configs.recommended.rules,
     },
   },
+  // GraphQL in JS/JSX files (Gatsby)
+  {
+    files: ['**/*.{js,jsx}'],
+    processor: graphqlPlugin.processor,
+  },
+  {
+    files: ['**/*.{js,jsx}/*.graphql'],
+    languageOptions: {
+      parser: graphqlPlugin.parser,
+    },
+    plugins: {
+      '@graphql-eslint': graphqlPlugin,
+    },
+    rules: {
+      '@graphql-eslint/no-anonymous-operations': 'error',
+      '@graphql-eslint/no-duplicate-fields': 'error',
+      '@graphql-eslint/no-deprecated': 'warn',
+      '@graphql-eslint/naming-convention': [
+        'error',
+        {
+          OperationDefinition: {
+            style: 'PascalCase',
+            forbiddenPrefixes: ['Query', 'Mutation', 'Subscription', 'Get'],
+            forbiddenSuffixes: ['Query', 'Mutation', 'Subscription'],
+          },
+          FragmentDefinition: {
+            style: 'PascalCase',
+            forbiddenPrefixes: ['Fragment'],
+            forbiddenSuffixes: ['Fragment'],
+          },
+        },
+      ],
+      '@graphql-eslint/unique-operation-name': 'error',
+      '@graphql-eslint/unique-fragment-name': 'error',
+    },
+  },
+  // Standalone GraphQL files
+  {
+    files: ['**/*.graphql', '**/*.gql'],
+    languageOptions: {
+      parser: graphqlPlugin.parser,
+    },
+    plugins: {
+      '@graphql-eslint': graphqlPlugin,
+    },
+    rules: {
+      '@graphql-eslint/no-anonymous-operations': 'error',
+      '@graphql-eslint/no-duplicate-fields': 'error',
+      '@graphql-eslint/no-deprecated': 'warn',
+      '@graphql-eslint/naming-convention': [
+        'error',
+        {
+          OperationDefinition: {
+            style: 'PascalCase',
+            forbiddenPrefixes: ['Query', 'Mutation', 'Subscription', 'Get'],
+            forbiddenSuffixes: ['Query', 'Mutation', 'Subscription'],
+          },
+          FragmentDefinition: {
+            style: 'PascalCase',
+            forbiddenPrefixes: ['Fragment'],
+            forbiddenSuffixes: ['Fragment'],
+          },
+        },
+      ],
+      '@graphql-eslint/unique-operation-name': 'error',
+      '@graphql-eslint/unique-fragment-name': 'error',
+    },
+  },
   {
     settings: {
       'import/resolver': {
@@ -99,11 +168,26 @@ export default defineConfig([
           ['store', './src/store'],
           ['slices-machine', './src/slices-machine'],
           ['context', './src/context'],
-          ['@lumin-tokens/static', './node_modules/@lumin-ui/dist/design-tokens/growth-templates/js'],
-          ['@lumin-tokens/kiwi', './node_modules/@lumin-ui/dist/design-tokens/kiwi/js'],
-          ['@lumin-tokens/kiwi/*', './node_modules/@lumin-ui/dist/design-tokens/kiwi/js/*'],
-          ['@lumin-tokens', './node_modules/@lumin-ui/dist/design-tokens/koala/js'],
-          ['@lumin-tokens/*', './node_modules/@lumin-ui/dist/design-tokens/koala/js/*'],
+          [
+            '@lumin-tokens/static',
+            './node_modules/@lumin-ui/dist/design-tokens/growth-templates/js',
+          ],
+          [
+            '@lumin-tokens/kiwi',
+            './node_modules/@lumin-ui/dist/design-tokens/kiwi/js',
+          ],
+          [
+            '@lumin-tokens/kiwi/*',
+            './node_modules/@lumin-ui/dist/design-tokens/kiwi/js/*',
+          ],
+          [
+            '@lumin-tokens',
+            './node_modules/@lumin-ui/dist/design-tokens/koala/js',
+          ],
+          [
+            '@lumin-tokens/*',
+            './node_modules/@lumin-ui/dist/design-tokens/koala/js/*',
+          ],
           ['@lumin-ui/kiwi', './node_modules/@lumin-ui/dist/kiwi-ui'],
         ],
         node: {
@@ -141,22 +225,26 @@ export default defineConfig([
           IIFEs: true,
         },
       ],
-      'no-shadow': [
-        'error',
-      ],
+      'no-shadow': ['error'],
+      curly: ['error', 'all'],
+      'unicorn/prefer-global-this': 'off',
     },
   },
   {
     rules: {
-      '@stylistic/object-curly-spacing': [
-        'error',
-        'always',
-      ],
+      '@stylistic/object-curly-spacing': ['error', 'always'],
       '@stylistic/function-paren-newline': ['error', 'consistent'],
-      '@stylistic/jsx-curly-spacing': ['error', { when: 'never', children: true }],
+      '@stylistic/jsx-curly-spacing': [
+        'error',
+        { when: 'never', children: true },
+      ],
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/jsx-closing-bracket-location': ['error', 'tag-aligned'],
-      '@stylistic/operator-linebreak': ['error', 'after', { overrides: { '?': 'before', ':': 'before' } }],
+      '@stylistic/operator-linebreak': [
+        'error',
+        'after',
+        { overrides: { '?': 'before', ':': 'before' } },
+      ],
       '@stylistic/jsx-quotes': ['error', 'prefer-double'],
       'no-console': 'error',
       'no-debugger': 'error',

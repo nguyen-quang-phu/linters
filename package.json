@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.91.2",
-    "eslint-plugin-css-modules": "^2.12.0"
+    "eslint-plugin-css-modules": "^2.12.0",
+    "stylelint-config-prettier": "^9.0.5"
   }
 }
